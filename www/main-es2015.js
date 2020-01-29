@@ -441,7 +441,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-router-outlet>\n    <ion-tabs>\n\n      <ion-tab-bar slot=\"top\">\n        <ion-tab-button tab=\"home\">\n          <img src=\"../../assets/img/icon.png\"/>\n        </ion-tab-button>\n\n        <ion-tab-button tab=\"game\">\n          <ion-icon name=\"play\"></ion-icon>\n          <ion-label>Jouer</ion-label>\n        </ion-tab-button>\n\n        <ion-tab-button tab=\"tab2\">\n          <ion-icon name=\"ribbon\"></ion-icon>\n          <ion-label>Mes JTP</ion-label>\n        </ion-tab-button>\n\n        <ion-tab-button tab=\"tab3\">\n          <ion-icon name=\"settings\"></ion-icon>\n          <ion-label>Param</ion-label>\n        </ion-tab-button>\n      </ion-tab-bar>\n\n    </ion-tabs>\n</ion-router-outlet>\n</ion-app>\n"
 
 /***/ }),
 
@@ -464,7 +464,21 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        loadChildren: () => __webpack_require__.e(/*! import() | tabs-tabs-module */ "tabs-tabs-module").then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(m => m.TabsPageModule)
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
+        loadChildren: () => __webpack_require__.e(/*! import() | home-home-module */ "home-home-module").then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(m => m.HomePageModule)
+    },
+    {
+        path: 'game',
+        children: [
+            {
+                path: '',
+                loadChildren: () => __webpack_require__.e(/*! import() | tab-game-tab-game-module */ "tab-game-tab-game-module").then(__webpack_require__.bind(null, /*! ./tab-game/tab-game.module */ "./src/app/tab-game/tab-game.module.ts")).then(m => m.TabGamePageModule)
+            }
+        ]
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -489,7 +503,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = "ion-tab-button {\n  background-color: var(--jtp-background);\n}\n\nion-tab-button.tab-selected {\n  color: #35a3bc;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXEFwcHNcXGJsYW5rdGVzdC9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx1Q0FBQTtBQ0NGOztBREVBO0VBQ0UsY0FBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXRhYi1idXR0b24ge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWp0cC1iYWNrZ3JvdW5kKTtcclxufVxyXG5cclxuaW9uLXRhYi1idXR0b24udGFiLXNlbGVjdGVkIHtcclxuICBjb2xvcjogIzM1YTNiYztcclxufVxyXG4iLCJpb24tdGFiLWJ1dHRvbiB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWp0cC1iYWNrZ3JvdW5kKTtcbn1cblxuaW9uLXRhYi1idXR0b24udGFiLXNlbGVjdGVkIHtcbiAgY29sb3I6ICMzNWEzYmM7XG59Il19 */"
 
 /***/ }),
 
@@ -522,8 +536,11 @@ let AppComponent = class AppComponent {
     }
     initializeApp() {
         this.platform.ready().then(() => {
+            alert("1");
             this.statusBar.styleDefault();
+            alert("2");
             this.splashScreen.hide();
+            alert("3");
         });
     }
 };
