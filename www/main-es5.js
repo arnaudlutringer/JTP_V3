@@ -543,10 +543,12 @@ var AppComponent = /** @class */ (function () {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        alert("-1");
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
+        alert("0");
         this.platform.ready().then(function () {
             alert("1");
             _this.statusBar.styleDefault();

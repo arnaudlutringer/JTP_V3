@@ -532,9 +532,11 @@ let AppComponent = class AppComponent {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        alert("-1");
         this.initializeApp();
     }
     initializeApp() {
+        alert("0");
         this.platform.ready().then(() => {
             alert("1");
             this.statusBar.styleDefault();
